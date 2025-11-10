@@ -7,7 +7,15 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 //#include <layouts/josefadamcik/sofle.dtsi>
 
-#include <physical_layouts.dtsi>
+//#include <physical_layouts.dtsi>
+
+/ {
+    key_physical_attrs: key_physical_attrs {
+        compatible = "zmk,key-physical-attrs";
+
+        #key-cells = <7>;
+    };
+};
 
 / {
     josefadamcik_sofle_layout: josefadamcik_sofle_layout {
