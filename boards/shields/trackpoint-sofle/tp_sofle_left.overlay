@@ -409,15 +409,6 @@
     interrupts = < 42 3 >;
 };
 
-
-/*
- * PS/2 Mouse / Trackpoint - Device Definitions
- *
- * WARNING: Do not change anything beyond here unless you know what you are
- *          doing.
- */
-
-
 // This define can be used in the keymap file to check whether the device tree
 // configs in this file are present to void build errors on the side that does
 // not have the mouse or TP
@@ -463,7 +454,7 @@
 #ifdef MOUSE_PS2_DRIVER_UART
 
     &uart0 {
-        status = "disabled";
+       
         compatible = "nordic,nrf-uarte";
 
         current-speed = MOUSE_PS2_UART_BAUD_RATE;
@@ -473,7 +464,7 @@
         pinctrl-names = "default", "sleep";
 
         uart_ps2: uart_ps2 {
-            status="disabled";
+          
             compatible = "uart-ps2";
             scl-gpios = MOUSE_PS2_PIN_SCL_PRO_MICRO;
             sda-gpios = MOUSE_PS2_PIN_SDA_PRO_MICRO;
@@ -497,9 +488,8 @@
 
 / {
     mouse_ps2: mouse_ps2 {
-		status = "disabled";
         compatible = "zmk,input-mouse-ps2";
-
+        
 #ifdef MOUSE_PS2_DRIVER_UART
 	    ps2-device = <&uart_ps2>;
 #else
@@ -510,10 +500,12 @@
         rst-gpios = MOUSE_PS2_PIN_RST_PRO_MICRO;
 #endif
     };
-    #include <input/processors.dtsi>
-    #include <dt-bindings/zmk/input_transform.h>
-    #include <zephyr/dt-bindings/input/input-event-codes.h>
+};
+#include <input/processors.dtsi>
+#include <dt-bindings/zmk/input_transform.h>
+#include <zephyr/dt-bindings/input/input-event-codes.h>
 
+/{
     trackpoint_listener: trackpoint_listener {
         compatible = "zmk,input-listener";
         device = <&mouse_ps2>;
@@ -532,4 +524,6 @@
         };
         
     };
+
+    
 };
