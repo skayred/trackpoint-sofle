@@ -1,6 +1,6 @@
 file_format: "1"
 id: tp_sofle
-name: TrackSofle
+name: TPSofle
 type: shield
 url: https://github.com/josefadamcik/SofleKeyboard
 requires: [pro_micro]
@@ -10,7 +10,6 @@ features:
   - display
   - encoder
   - underglow
-  - studio
 siblings:
   - tp_sofle_left
   - tp_sofle_right
